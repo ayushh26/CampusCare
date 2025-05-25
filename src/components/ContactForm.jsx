@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const HOST = "http://localhost:5000";
+const HOST = "http://localhost:8080/api";
 
 const ContactForm = () => {
   const [form, setForm] = useState({
@@ -12,7 +12,7 @@ const ContactForm = () => {
     phone: "",
     message: "",
     department: "",
-    rollnumber: "",
+    rollNumber: "",
     branch: "",
     section: "",
     grievanceType: "",
@@ -33,7 +33,7 @@ const ContactForm = () => {
       !form.phone ||
       !form.message ||
       !form.department ||
-      !form.rollnumber ||
+      !form.rollNumber ||
       !form.branch ||
       !form.section ||
       !form.grievanceType
@@ -50,7 +50,7 @@ const ContactForm = () => {
         body: JSON.stringify(form),
       });
 
-      const data = await response.json();
+      const data = await response.text();
 
       if (!response.ok) throw new Error(data.message || "Submission failed");
 
@@ -62,7 +62,7 @@ const ContactForm = () => {
         phone: "",
         message: "",
         department: "",
-        rollnumber: "",
+        rollNumber: "",
         branch: "",
         section: "",
         grievanceType: "",
@@ -96,7 +96,7 @@ const ContactForm = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              ✅ Thank you! We’ll get back to you shortly.
+              ✅ Thank you! We will get back to you shortly.
             </motion.p>
           )}
 
@@ -148,8 +148,8 @@ const ContactForm = () => {
                 Roll Number
               </label>
               <input
-                name="rollnumber"
-                value={form.rollnumber}
+                name="rollNumber"
+                value={form.rollNumber}
                 onChange={handleChange}
                 type="text"
                 className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"

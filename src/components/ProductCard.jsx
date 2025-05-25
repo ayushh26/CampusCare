@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 import canteen from "../assests/Products/Canteen.jpg";
 import depart from "../assests/Products/depart.jpg";
@@ -48,7 +49,12 @@ const productsData = [
 ];
 
 const ProductList = () => {
+  const navigate = useNavigate();
 
+  const handleActionClick = (productName) => {
+    // Navigate to /contact and pass the product name as state
+    navigate("/contact", { state: { product: productName } });
+  };
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-16 bg-bgLight dark:bg-bgDark text-gray-800 dark:text-gray-100">
@@ -77,6 +83,7 @@ const ProductList = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => handleActionClick(product.name)}
                 className="bg-primary text-white px-4 py-2 rounded-md font-medium shadow-md hover:shadow-lg"
               >
                 Action
@@ -84,7 +91,6 @@ const ProductList = () => {
             </div>
           </motion.div>
         ))}
-      
       </div>
     </section>
   );
